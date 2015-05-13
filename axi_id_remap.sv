@@ -214,6 +214,13 @@ assign init_awvalid_o = targ_awvalid_i & ~full_ID_AW_BW;
 assign targ_bvalid_o  = init_bvalid_i & ~empty_ID_AW_BW;
 assign init_bready_o  = targ_bready_i & ~empty_ID_AW_BW;
 
+
+assign targ_arready_o = init_arready_i & ~full_ID_AR_BR;
+assign init_arvalid_o = targ_arvalid_i & ~full_ID_AR_BR;
+assign targ_rvalid_o  = init_rvalid_i & ~empty_ID_AR_BR;
+assign init_rready_o  = targ_rready_i & ~empty_ID_AR_BR;
+
+
 generate
     case(ID_SLOT)
     4:
@@ -238,6 +245,28 @@ generate
           .BID_i(init_bid_i),
           .BID_o(targ_bid_o),
           .empty_o(empty_ID_AW_BW)
+        );
+
+        ID_Gen_4
+        #(
+          .ID_WIDTH_IN(AXI_ID_IN),
+          .ID_WIDTH_OUT(AXI_ID_OUT)
+        )
+        AR_BR_REMAP
+        (
+
+          .clk(clk),
+          .rst_n(rst_n),
+
+          .incr_i( targ_arvalid_i & ~full_ID_AR_BR & init_arready_i  ),
+          .full_o(full_ID_AR_BR),
+          .ID_i(targ_arid_i),
+          .ID_o(init_arid_o),
+
+          .release_ID_i(init_rvalid_i & targ_rready_i & init_rlast_i & ~empty_ID_AR_BR),
+          .BID_i(init_rid_i),
+          .BID_o(targ_rid_o),
+          .empty_o(empty_ID_AR_BR)
         );
     end
 
@@ -264,6 +293,29 @@ generate
           .BID_o(targ_bid_o),
           .empty_o(empty_ID_AW_BW)
         );
+        
+        
+        ID_Gen_16
+        #(
+          .ID_WIDTH_IN(AXI_ID_IN),
+          .ID_WIDTH_OUT(AXI_ID_OUT)
+        )
+        AR_BR_REMAP
+        (
+
+          .clk(clk),
+          .rst_n(rst_n),
+          
+          .incr_i( targ_arvalid_i & ~full_ID_AR_BR & init_arready_i  ),
+          .full_o(full_ID_AR_BR),
+          .ID_i(targ_arid_i),
+          .ID_o(init_arid_o),
+          
+          .release_ID_i(init_rvalid_i & targ_rready_i & init_rlast_i & ~empty_ID_AR_BR),
+          .BID_i(init_rid_i),
+          .BID_o(targ_rid_o),
+          .empty_o(empty_ID_AR_BR)
+        );
     end
     endcase
 endgenerate
@@ -271,33 +323,10 @@ endgenerate
 
 
 
-assign targ_arready_o = init_arready_i & ~full_ID_AR_BR;
-assign init_arvalid_o = targ_arvalid_i & ~full_ID_AR_BR;
-assign targ_rvalid_o  = init_rvalid_i & ~empty_ID_AR_BR;
-assign init_rready_o  = targ_rready_i & ~empty_ID_AR_BR;
 
 
-ID_Gen_16
-#(
-  .ID_WIDTH_IN(AXI_ID_IN),
-  .ID_WIDTH_OUT(AXI_ID_OUT)
-)
-AR_BR_REMAP
-(
 
-  .clk(clk),
-  .rst_n(rst_n),
-  
-  .incr_i( targ_arvalid_i & ~full_ID_AR_BR & init_arready_i  ),
-  .full_o(full_ID_AR_BR),
-  .ID_i(targ_arid_i),
-  .ID_o(init_arid_o),
-  
-  .release_ID_i(init_rvalid_i & targ_rready_i & init_rlast_i & ~empty_ID_AR_BR),
-  .BID_i(init_rid_i),
-  .BID_o(targ_rid_o),
-  .empty_o(empty_ID_AR_BR)
-);
+
 
 
 
