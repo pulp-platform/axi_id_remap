@@ -100,49 +100,49 @@ module axi_id_remap
   // ---------------------------------------------------------------
   
   //AXI write data bus -------------- // // -------------- 
-  output logic  [AXI_DATA_W-1:0]                        init_wdata_o,
-  output logic  [AXI_NUMBYTES-1:0]                        init_wstrb_o,   //1 strobe per byte
-  output logic                                                 init_wlast_o,   //last transfer in burst
-  output logic  [ AXI_USER_W-1:0]                        init_wuser_o,   //user sideband signals
-  output logic                                                 init_wvalid_o,  //master data valid
-  input  logic                                                 init_wready_i,  //slave ready to accept
+  output logic  [AXI_DATA_W-1:0]                             init_wdata_o,
+  output logic  [AXI_NUMBYTES-1:0]                           init_wstrb_o,   //1 strobe per byte
+  output logic                                               init_wlast_o,   //last transfer in burst
+  output logic  [ AXI_USER_W-1:0]                            init_wuser_o,   //user sideband signals
+  output logic                                               init_wvalid_o,  //master data valid
+  input  logic                                               init_wready_i,  //slave ready to accept
   // ---------------------------------------------------------------
   
   //AXI BACKWARD write response bus -------------- // // -------------- 
-  input  logic  [AXI_ID_OUT-1:0]                        init_bid_i,
-  input  logic  [ 1:0]                                        init_bresp_i,
-  input  logic  [ AXI_USER_W-1:0]                        init_buser_i,
-  input  logic                                                 init_bvalid_i,
-  output logic                                                 init_bready_o,
+  input  logic  [AXI_ID_OUT-1:0]                             init_bid_i,
+  input  logic  [ 1:0]                                       init_bresp_i,
+  input  logic  [ AXI_USER_W-1:0]                            init_buser_i,
+  input  logic                                               init_bvalid_i,
+  output logic                                               init_bready_o,
   // ---------------------------------------------------------------
   
   
   
   //AXI read address bus -------------------------------------------
-  output  logic [AXI_ID_OUT-1:0]                        init_arid_o,
-  output  logic [AXI_ADDRESS_W-1:0]                        init_araddr_o,
-  output  logic [ 7:0]                                        init_arlen_o,   //burst length - 1 to 16
-  output  logic [ 2:0]                                        init_arsize_o,  //size of each transfer in burst
-  output  logic [ 1:0]                                        init_arburst_o, //for bursts>1, accept only incr burst=01
-  output  logic                                         init_arlock_o,  //only normal access supported axs_awlock=00
-  output  logic [ 3:0]                                        init_arcache_o, 
-  output  logic [ 2:0]                                        init_arprot_o,
-  output  logic [ 3:0]                                        init_arregion_o,        //
-  output  logic [ AXI_USER_W-1:0]                        init_aruser_o,        //
-  output  logic [ 3:0]                                        init_arqos_o,        //  
-  output  logic                                         init_arvalid_o, //master addr valid
-  input   logic                                         init_arready_i, //slave ready to accept
+  output  logic [AXI_ID_OUT-1:0]                             init_arid_o,
+  output  logic [AXI_ADDRESS_W-1:0]                          init_araddr_o,
+  output  logic [ 7:0]                                       init_arlen_o,   //burst length - 1 to 16
+  output  logic [ 2:0]                                       init_arsize_o,  //size of each transfer in burst
+  output  logic [ 1:0]                                       init_arburst_o, //for bursts>1, accept only incr burst=01
+  output  logic                                              init_arlock_o,  //only normal access supported axs_awlock=00
+  output  logic [ 3:0]                                       init_arcache_o, 
+  output  logic [ 2:0]                                       init_arprot_o,
+  output  logic [ 3:0]                                       init_arregion_o,        //
+  output  logic [ AXI_USER_W-1:0]                            init_aruser_o,        //
+  output  logic [ 3:0]                                       init_arqos_o,        //  
+  output  logic                                              init_arvalid_o, //master addr valid
+  input   logic                                              init_arready_i, //slave ready to accept
   // ---------------------------------------------------------------
   
   
   //AXI BACKWARD read data bus ----------------------------------------------
-  input  logic [AXI_ID_OUT-1:0]                                init_rid_i,
-  input  logic [AXI_DATA_W-1:0]                                init_rdata_i,
-  input  logic [ 1:0]                                       init_rresp_i,
-  input  logic                                              init_rlast_i,   //last transfer in burst
-  input  logic [ AXI_USER_W-1:0]                        init_ruser_i,
-  input  logic                                             init_rvalid_i,  //slave data valid
-  output logic                                            init_rready_o   //master ready to accept
+  input  logic [AXI_ID_OUT-1:0]                              init_rid_i,
+  input  logic [AXI_DATA_W-1:0]                              init_rdata_i,
+  input  logic [ 1:0]                                        init_rresp_i,
+  input  logic                                               init_rlast_i,   //last transfer in burst
+  input  logic [ AXI_USER_W-1:0]                             init_ruser_i,
+  input  logic                                               init_rvalid_i,  //slave data valid
+  output logic                                               init_rready_o   //master ready to accept
   // ---------------------------------------------------------------
 );
 
@@ -181,12 +181,12 @@ module axi_id_remap
   
   
   // Data Write Channel
-  assign init_wdata_o              =  targ_wdata_i;
-  assign init_wstrb_o              =  targ_wstrb_i;
-  assign init_wlast_o              =  targ_wlast_i;
-  assign init_wuser_o              =  targ_wuser_i;
-  assign init_wvalid_o             =  targ_wvalid_i;
-  assign targ_wready_o             =  init_wready_i; 
+  assign init_wdata_o       =  targ_wdata_i;
+  assign init_wstrb_o       =  targ_wstrb_i;
+  assign init_wlast_o       =  targ_wlast_i;
+  assign init_wuser_o       =  targ_wuser_i;
+  assign init_wvalid_o      =  targ_wvalid_i;
+  assign targ_wready_o      =  init_wready_i; 
   
   
   
