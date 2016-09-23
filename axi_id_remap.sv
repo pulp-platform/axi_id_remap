@@ -223,6 +223,53 @@ assign init_rready_o  = targ_rready_i & ~empty_ID_AR_BR;
 
 generate
     case(ID_SLOT)
+    1:
+    begin
+        ID_Gen_1
+        #(
+          .ID_WIDTH_IN(AXI_ID_IN),
+          .ID_WIDTH_OUT(AXI_ID_OUT)
+        )
+        AW_BW_REMAP
+        (
+
+          .clk(clk),
+          .rst_n(rst_n),
+
+          .incr_i( targ_awvalid_i & ~full_ID_AW_BW & init_awready_i  ),
+          .full_o(full_ID_AW_BW),
+          .ID_i(targ_awid_i),
+          .ID_o(init_awid_o),
+
+          .release_ID_i(init_bvalid_i & targ_bready_i & ~empty_ID_AW_BW),
+          .BID_i(init_bid_i),
+          .BID_o(targ_bid_o),
+          .empty_o(empty_ID_AW_BW)
+        );
+
+        ID_Gen_1
+        #(
+          .ID_WIDTH_IN(AXI_ID_IN),
+          .ID_WIDTH_OUT(AXI_ID_OUT)
+        )
+        AR_BR_REMAP
+        (
+
+          .clk(clk),
+          .rst_n(rst_n),
+
+          .incr_i( targ_arvalid_i & ~full_ID_AR_BR & init_arready_i  ),
+          .full_o(full_ID_AR_BR),
+          .ID_i(targ_arid_i),
+          .ID_o(init_arid_o),
+
+          .release_ID_i(init_rvalid_i & targ_rready_i & init_rlast_i & ~empty_ID_AR_BR),
+          .BID_i(init_rid_i),
+          .BID_o(targ_rid_o),
+          .empty_o(empty_ID_AR_BR)
+        );
+    end
+
     4:
     begin
         ID_Gen_4
