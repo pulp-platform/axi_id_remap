@@ -1,6 +1,7 @@
 axi_id_remap:
   files: [
     axi_id_remap.sv,
+    ID_Gen_1.sv,
     ID_Gen_16.sv,
     ID_Gen_4.sv,
     ID_Gen_64.sv,
