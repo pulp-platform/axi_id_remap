@@ -137,13 +137,13 @@ begin
 
           4'b1111 :
           begin
-                    ID_int            = 'X;
+                    ID_int            = '0;  // 'X
                     valid_ID_o      = 1'b0;
           end
 
           default :
           begin
-                    ID_int            = 'X;
+                    ID_int            = '0; // 'X
                     valid_ID_o      = 1'b0;
           end
           endcase
