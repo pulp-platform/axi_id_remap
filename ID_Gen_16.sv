@@ -1,17 +1,12 @@
-/* Copyright (C) 2017 ETH Zurich, University of Bologna
- * All rights reserved.
- *
- * This code is under development and not yet released to the public.
- * Until it is released, the code is under the copyright of ETH Zurich and
- * the University of Bologna, and may contain confidential and/or unpublished 
- * work. Any reuse/redistribution is strictly forbidden without written
- * permission from ETH Zurich.
- *
- * Bug fixes and contributions will eventually be released under the
- * SolderPad open hardware license in the context of the PULP platform
- * (http://www.pulp-platform.org), under the copyright of ETH Zurich and the
- * University of Bologna.
- */
+// Copyright 2014-2018 ETH Zurich and University of Bologna.
+// Copyright and related rights are licensed under the Solderpad Hardware
+// License, Version 0.51 (the “License”); you may not use this file except in
+// compliance with the License.  You may obtain a copy of the License at
+// http://solderpad.org/licenses/SHL-0.51. Unless required by applicable law
+// or agreed to in writing, software, hardware and materials distributed under
+// this License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR
+// CONDITIONS OF ANY KIND, either express or implied. See the License for the
+// specific language governing permissions and limitations under the License.
 
 module ID_Gen_16
 #(
@@ -67,18 +62,18 @@ module ID_Gen_16
      end
      else
        begin
-       
+
         if(release_ID_i)
           VALID_TABLE[BID_i[3:0]] <= 1'b0;
         else;
-       
-       
-       
-       
+
+
+
+
 
         casex(VALID_TABLE)
-        
-        16'bxxxx_xxxx_xxxx_xxx0 : 
+
+        16'bxxxx_xxxx_xxxx_xxx0 :
         begin
              if(incr_i)
              begin
@@ -86,26 +81,26 @@ module ID_Gen_16
                ID_TABLE[0]    <= ID_i;
              end
         end
-        
-        16'bxxxx_xxxx_xxxx_xx01 : 
+
+        16'bxxxx_xxxx_xxxx_xx01 :
         begin
              if(incr_i)
              begin
                VALID_TABLE[1]<= 1'b1;
                ID_TABLE[1]    <= ID_i;
              end
-        end   
-        
-        16'bxxxx_xxxx_xxxx_x011 : 
+        end
+
+        16'bxxxx_xxxx_xxxx_x011 :
         begin
              if(incr_i)
              begin
                VALID_TABLE[2]<= 1'b1;
                ID_TABLE[2]    <= ID_i;
              end
-        end   
-        
-        16'bxxxx_xxxx_xxxx_0111 : 
+        end
+
+        16'bxxxx_xxxx_xxxx_0111 :
         begin
              if(incr_i)
              begin
@@ -113,9 +108,9 @@ module ID_Gen_16
                ID_TABLE[3]    <= ID_i;
              end
         end
-        
 
-        16'bxxxx_xxxx_xxx0_1111 : 
+
+        16'bxxxx_xxxx_xxx0_1111 :
         begin
              if(incr_i)
              begin
@@ -123,37 +118,37 @@ module ID_Gen_16
                ID_TABLE[4]    <= ID_i;
              end
         end
-        
-        16'bxxxx_xxxx_xx01_1111 : 
+
+        16'bxxxx_xxxx_xx01_1111 :
         begin
              if(incr_i)
              begin
                VALID_TABLE[5] <= 1'b1;
                ID_TABLE[5]    <= ID_i;
              end
-        end   
-        
-        16'bxxxx_xxxx_x011_1111 : 
+        end
+
+        16'bxxxx_xxxx_x011_1111 :
         begin
              if(incr_i)
              begin
                VALID_TABLE[6] <= 1'b1;
                ID_TABLE[6]    <= ID_i;
              end
-        end   
-        
-        16'bxxxx_xxxx_0111_1111 : 
+        end
+
+        16'bxxxx_xxxx_0111_1111 :
         begin
              if(incr_i)
              begin
                VALID_TABLE[7] <= 1'b1;
                ID_TABLE[7]    <= ID_i;
              end
-        end   
-        
+        end
 
-        
-        16'bxxxx_xxx0_1111_1111 : 
+
+
+        16'bxxxx_xxx0_1111_1111 :
         begin
              if(incr_i)
              begin
@@ -161,36 +156,36 @@ module ID_Gen_16
                ID_TABLE[8]    <= ID_i;
              end
         end
-        
-        16'bxxxx_xx01_1111_1111 : 
+
+        16'bxxxx_xx01_1111_1111 :
         begin
              if(incr_i)
              begin
                VALID_TABLE[9] <= 1'b1;
                ID_TABLE[9]    <= ID_i;
              end
-        end   
-        
-        16'bxxxx_x011_1111_1111 : 
+        end
+
+        16'bxxxx_x011_1111_1111 :
         begin
              if(incr_i)
              begin
                VALID_TABLE[10] <= 1'b1;
                ID_TABLE[10]    <= ID_i;
              end
-        end   
-        
-        16'bxxxx_0111_1111_1111 : 
+        end
+
+        16'bxxxx_0111_1111_1111 :
         begin
              if(incr_i)
              begin
                VALID_TABLE[11] <= 1'b1;
                ID_TABLE[11]    <= ID_i;
              end
-        end      
-        
-        
-        16'bxxx0_1111_1111_1111 : 
+        end
+
+
+        16'bxxx0_1111_1111_1111 :
         begin
              if(incr_i)
              begin
@@ -198,26 +193,26 @@ module ID_Gen_16
                ID_TABLE[12]    <= ID_i;
              end
         end
-        
-        16'bxx01_1111_1111_1111 : 
+
+        16'bxx01_1111_1111_1111 :
         begin
              if(incr_i)
              begin
                VALID_TABLE[13] <= 1'b1;
                ID_TABLE[13]    <= ID_i;
              end
-        end   
-        
-        16'bx011_1111_1111_1111 : 
+        end
+
+        16'bx011_1111_1111_1111 :
         begin
              if(incr_i)
              begin
                VALID_TABLE[14] <= 1'b1;
                ID_TABLE[14]    <= ID_i;
              end
-        end   
-        
-        16'b0111_1111_1111_1111 : 
+        end
+
+        16'b0111_1111_1111_1111 :
         begin
              if(incr_i)
              begin
@@ -225,8 +220,8 @@ module ID_Gen_16
                ID_TABLE[15]    <= ID_i;
              end
         end
-        
-        
+
+
 
         endcase
 
@@ -238,116 +233,116 @@ module ID_Gen_16
    begin
         casex(VALID_TABLE)
 
-        
-        
-        16'bxxxx_xxxx_xxxx_xxx0 : 
+
+
+        16'bxxxx_xxxx_xxxx_xxx0 :
         begin
              ID_int            = 0;
              valid_ID_o        = 1'b1;
         end
-        
-        16'bxxxx_xxxx_xxxx_xx01 : 
+
+        16'bxxxx_xxxx_xxxx_xx01 :
         begin
              ID_int            = 1;
              valid_ID_o      = 1'b1;
-        end   
-        
-        16'bxxxx_xxxx_xxxx_x011 : 
+        end
+
+        16'bxxxx_xxxx_xxxx_x011 :
         begin
              ID_int            = 2;
              valid_ID_o      = 1'b1;
-        end   
-        
-        16'bxxxx_xxxx_xxxx_0111 : 
+        end
+
+        16'bxxxx_xxxx_xxxx_0111 :
         begin
              ID_int            = 3;
              valid_ID_o      = 1'b1;
         end
-        
 
-        16'bxxxx_xxxx_xxx0_1111 : 
+
+        16'bxxxx_xxxx_xxx0_1111 :
         begin
              ID_int            = 4;
              valid_ID_o      = 1'b1;
         end
-        
-        16'bxxxx_xxxx_xx01_1111 : 
+
+        16'bxxxx_xxxx_xx01_1111 :
         begin
              ID_int            = 5;
              valid_ID_o      = 1'b1;
-        end   
-        
-        16'bxxxx_xxxx_x011_1111 : 
+        end
+
+        16'bxxxx_xxxx_x011_1111 :
         begin
              ID_int            = 6;
              valid_ID_o      = 1'b1;
-        end   
-        
-        16'bxxxx_xxxx_0111_1111 : 
+        end
+
+        16'bxxxx_xxxx_0111_1111 :
         begin
              ID_int            = 7;
              valid_ID_o      = 1'b1;
-        end   
-        
+        end
 
-        
-        16'bxxxx_xxx0_1111_1111 : 
+
+
+        16'bxxxx_xxx0_1111_1111 :
         begin
              ID_int            = 8;
              valid_ID_o      = 1'b1;
         end
-        
-        16'bxxxx_xx01_1111_1111 : 
+
+        16'bxxxx_xx01_1111_1111 :
         begin
              ID_int            = 9;
              valid_ID_o      = 1'b1;
-        end   
-        
-        16'bxxxx_x011_1111_1111 : 
+        end
+
+        16'bxxxx_x011_1111_1111 :
         begin
              ID_int            = 10;
              valid_ID_o      = 1'b1;
-        end   
-        
-        16'bxxxx_0111_1111_1111 : 
+        end
+
+        16'bxxxx_0111_1111_1111 :
         begin
              ID_int            = 11;
              valid_ID_o      = 1'b1;
-        end      
-        
-        
-        16'bxxx0_1111_1111_1111 : 
+        end
+
+
+        16'bxxx0_1111_1111_1111 :
         begin
              ID_int            = 12;
              valid_ID_o      = 1'b1;
         end
-        
-        16'bxx01_1111_1111_1111 : 
+
+        16'bxx01_1111_1111_1111 :
         begin
              ID_int            = 13;
              valid_ID_o      = 1'b1;
-        end   
-        
-        16'bx011_1111_1111_1111 : 
+        end
+
+        16'bx011_1111_1111_1111 :
         begin
              ID_int            = 14;
              valid_ID_o      = 1'b1;
-        end   
-        
-        16'b0111_1111_1111_1111 : 
+        end
+
+        16'b0111_1111_1111_1111 :
         begin
              ID_int            = 15;
              valid_ID_o      = 1'b1;
         end
-        
-        
-        16'b1111_1111_1111_1111 : 
+
+
+        16'b1111_1111_1111_1111 :
         begin
              ID_int            = 'X;
              valid_ID_o      = 1'b0;
         end
 
-        default : 
+        default :
         begin
              ID_int            = 'X;
              valid_ID_o      = 1'b0;
